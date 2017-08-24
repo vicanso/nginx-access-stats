@@ -15,7 +15,12 @@ const tail = new Tail(accessFile, {
 
 tail.on('line', (data) => {
   const result = analyse(data);
-  if (!result || result.url === '/favicon.ico') {
+  const ignoreUrls = [
+    '/favicon.ico',
+    '/ping',
+    '/nginx-basic-status',
+  ];
+  if (!result || ignoreUrls.includes(result.url)) {
     return;
   }
   const tagKyes = 'method type spdy'.split(' ');
