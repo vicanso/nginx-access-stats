@@ -18,6 +18,8 @@ docker build -t vicanso/nginx-access-stats:go .
 
 - `PASS` the password for influxdb
 
+- `POOL` Poll for file changes instead of using inotify
+
 
 
 ## docker run
