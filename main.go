@@ -109,13 +109,13 @@ func main() {
 	seekInfo := tail.SeekInfo{
 		Offset: file.Size(),
 	}
-	isPool := len(os.Getenv("POLL")) != 0
-	log.Printf("the watch mode is pool: %t", isPool)
+	isPoll := len(os.Getenv("POLL")) != 0
+	log.Printf("the watch mode is poll: %t", isPoll)
 	t, err := tail.TailFile(logPath, tail.Config{
 		Follow:   true,
 		// 在mac环境下使用docker挂载文件，需要使用pull才能获取文件写入
 		// linux可以通过 ll /proc/sys/fs/inotify 来确认是否支持
-		Poll: isPool,
+		Poll: isPoll,
 		Location: &seekInfo,
 	})
 	if err != nil {
